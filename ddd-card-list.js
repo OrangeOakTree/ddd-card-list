@@ -49,11 +49,14 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
       display: grid;
-      gap: 1.75rem;
       align-items: stretch;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
       justify-content: space-between;
       padding: 0.75rem 1rem 1.25rem;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: unset;
+      align-items: normal;
       }
     `];
   }
