@@ -48,17 +48,12 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
     return [super.styles,
     css`
       :host {
-        display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
-      }
-      .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
-      }
-      h3 span {
-        font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
+      display: grid;
+      gap: 1.75rem;
+      align-items: stretch;
+      grid-template-columns: repeat(2, 1fr);
+      justify-content: space-between;
+      padding: 0.75rem 1rem 1.25rem;
       }
     `];
   }
@@ -66,10 +61,8 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-<div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
-  <slot></slot>
-</div>`;
+    <slot></slot>
+    `;
   }
 
   /**
