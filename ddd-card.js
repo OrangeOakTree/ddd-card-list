@@ -18,18 +18,27 @@ export class DddCard extends DDD {
 
   constructor() {
     super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
+    this.title = "NO TITLE"
+    this.descript = "NO DESCRIPTION"
+    this.src = ""
+    this.image = "https://hax.psu.edu/7d3549e0.png"
+    this.primarycolor = "2"
   }
 
   // Lit reactive properties
   static get properties() {
     return {
-      ...super.properties
+      ...super.properties,
+      title: {type: String},
+      descript: {type: String},
+      image: {type: String},
+      src: {type: String},
+      primarycolor: { 
+        type: String,
+        reflect: true,
+        DDDDataAttributes: "data-primary"
+      },
+
       
     };
   }
@@ -39,33 +48,33 @@ export class DddCard extends DDD {
     return [super.styles,
     css`
       :host {
+        display: flex;
+        transition: all .2s ease-out;
+        flex-wrap: nowrap;
         font-family: var(--font-family, sans-serif);
         font-size: var(--font-size, 16px);
+        position: static;
       }
       .card {
+        transition: all .2s ease-out;
         display: flex;
-        max-width: 498px;
-        flex-flow: column;
-        border-radius: 8px;
-        overflow-wrap: break-word;
-        white-space: pre-line;
-        border-width: 0px;
-        box-sizing: content-box;
-        border-style: solid;
-        background-color: var(--ddd-theme-default-roarLight);
+        height: 100%;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        background-color: white;
         border-radius: var(--ddd-radius-sm);
+        box-shadow: rgba(0, 3, 33, 0.125) 0px 4px 8px 0px;
       }
       .card img {
-        display: block;
-        width: 500px;
-        height: 500px;
-        object-fit: cover;
-        aspect-ratio: 3/2;
-        max-width: 100%;
-        height: auto;
         border-top-left-radius: var(--ddd-radius-sm);
         border-top-right-radius: var(--ddd-radius-sm);
-        
+        object-fit: cover;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        vertical-align: bottom;
+        box-sizing: border-box;
+        aspect-ratio: 3/2;
       }
       .card #color-line {
         display: flex;
@@ -73,48 +82,66 @@ export class DddCard extends DDD {
         border-bottom-width: 0px;
         box-sizing: content-box;
         border-style: solid;
-        border-color: var(--ddd-theme-default-forestGreen);
+        border-color: var(--ddd-theme-primary);
       }
-      .card-text {
+      .card-text{
+        font-family:Roboto, Arial, Tahoma, sans-serif;
+      }
+      #card-bottom {
+        height: 100%;
         display: flex;
-        flex-wrap: nowrap;
-        box-sizing: border-box;
-        padding: 16px 16px 0px 16px;
-        flex-flow: column;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 16px 16px 20px 16px;
       }
       .card-text h3 {
-        font-size: 24px;
-        line-height: normal;
+        color: #001E44;
         margin: 0px;
-        padding: 4px 4px 4px 4px;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 120%;
+        letter-spacing: normal;
       }
       .card-text p {
-        font-size: 16px;
+        font-size: 18px;
         line-height: normal;
-        margin: 0px;
-        padding: 4px 4px 4px 4px;
+        white-space: pre-line;
+        font-weight: 400;
+        line-height: 150%;
+        letter-spacing: normal;
+        color: #262626;
+        margin-bottom: 0rem;
+        margin-top: 12px;
+        margin-bottom: 8px;
+        white-space: pre-line;
+      }
+      #btn-icon {
+        color: rgb(255, 255, 255);
+        display: block;
+        height: 12px;
+        width: 12px;
       }
       .card button {
-        max-width: 500px;
-        display: flex;
-        justify-content: center;
+        height: 100%;
+        transition: all .2s ease-out;
+        font-family:Roboto, Arial, Tahoma, sans-serif;
         align-items: center;
-        cursor: pointer;
+        justify-content: center;
+        margin-top: auto;
+        padding: 12px 24px 12px 16px;
         height: fit-content;
-        background-color: var(--ddd-theme-default-forestGreen);
-        color: var(--ddd-theme-default-white);
-        border-radius: var(--ddd-radius-xs);
-        color: white;
+        width: 100%;
         font-weight: 500;
-        border: 4px solid var(--ddd-theme-default-forestGreen);
         font-size: 16px;
-        line-height: normal;
-        text-transform: none;
-        margin-bottom: 20px;
+        border-radius: 4px;
+        color: white;
+        background-color: rgb(0, 95, 169);
+        border: 2px solid rgb(0, 95, 169);
       }
       .card button:hover {
-        background-color: white;
-        color: var(--ddd-theme-default-forestGreen);
+        background-color: var(--ddd-theme-primary);
+        border-color: var(--ddd-theme-primary);
+        cursor: pointer;
       }
 
 
@@ -125,13 +152,15 @@ export class DddCard extends DDD {
   render() {
     return html`
     <div class="card">
-    <img src="https://cdn.aarp.net/content/dam/aarp/travel/destinations/2020/09/1140-yosemite-hero.imgcache.rev.web.1044.600.jpg" ></img>
-    <div id="color-line"></div>
-    <div class="card-text">
-      <h3>A card</h3>
-      <p> This is a card. One of many.</p>
-    </div>
-    <button> Press </button>
+      <img src=${this.image}></img>
+      <div id="color-line"></div>
+      <div id="card-bottom">
+        <div class="card-text">
+          <h3>${this.title}</h3>
+          <p> ${this.descript}</p>
+        </div>
+        <button src=${this.src}> Explore ></button>
+      </div>
     </div>`;
   }
 }

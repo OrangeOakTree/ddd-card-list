@@ -20,26 +20,19 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
-    this.registerLocalization({
-      context: this,
-      localesPath:
-        new URL("./locales/ddd-card-list.ar.json", import.meta.url).href +
-        "/../",
-      locales: ["ar", "es", "hi", "zh"],
-    });
+    this.backgroundcolor = "";
   }
 
   // Lit reactive properties
   static get properties() {
     return {
       ...super.properties,
-      title: { type: String },
+      backgroundcolor: { 
+        type: String,
+        relfect: true,
+        DDDDataAttributes: "data-accent"
+
+       },
     };
   }
 
@@ -47,24 +40,47 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
   static get styles() {
     return [super.styles,
     css`
-      :host {
+    :host {
+      display: flex;
+      background-color: none;
+      border: none;
+      color: none;
+    }
+    slot {
       display: grid;
-      align-items: stretch;
-      grid-template-rows: repeat(2, 1fr);
-      justify-content: space-between;
-      padding: 0.75rem 1rem 1.25rem;
-      margin-left: auto;
-      margin-right: auto;
-      max-width: unset;
-      align-items: normal;
+      grid-template-columns: repeat(1,1fr);
+      gap: 16px;
+    }
+    .wrapper {
+        display: flex;
+        background-color: var(--ddd-theme-accent);
+        padding-left: 26px;
+        padding-right: 26px;
+        padding-top: 60px;
+        padding-bottom: 60px;
       }
+
+    @media screen and (min-width: 768px) {
+      .wrapper slot {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+    }
+    @media screen and (min-width: 1080px) {
+      .wrapper slot {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+    }
     `];
   }
 
   // Lit render the HTML
   render() {
     return html`
+    <div class="wrapper">
     <slot></slot>
+    </div>
     `;
   }
 
