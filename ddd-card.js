@@ -51,8 +51,8 @@ export class DddCard extends DDD {
         display: flex;
         transition: all .2s ease-out;
         flex-wrap: nowrap;
-        font-family: var(--font-family, sans-serif);
-        font-size: var(--font-size, 16px);
+        font-family: var(--ddd-font-family);
+        font-size: var(--ddd-font-size-l);
         position: static;
       }
       .card {
@@ -61,9 +61,9 @@ export class DddCard extends DDD {
         height: 100%;
         flex-wrap: nowrap;
         flex-direction: column;
-        background-color: white;
+        background-color: var(--ddd-theme-default-white);
         border-radius: var(--ddd-radius-sm);
-        box-shadow: rgba(0, 3, 33, 0.125) 0px 4px 8px 0px;
+        box-shadow: var(--ddd-boxShadow-sm);
       }
       .card img {
         border-top-left-radius: var(--ddd-radius-sm);
@@ -78,65 +78,57 @@ export class DddCard extends DDD {
       }
       .card #color-line {
         display: flex;
-        border-top-width: 12px;
-        border-bottom-width: 0px;
-        box-sizing: content-box;
-        border-style: solid;
-        border-color: var(--ddd-theme-primary);
+        height: 24px;
+        background-color: var(--ddd-theme-primary);
+        box-sizing: border-box;
       }
       .card-text{
-        font-family:Roboto, Arial, Tahoma, sans-serif;
+        font-family: var(--ddd-font-primary);
       }
       #card-bottom {
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 16px 16px 20px 16px;
+        padding-top: var(--ddd-spacing-4); 
+        padding-bottom: var(--ddd-spacing-4);
+        padding-left: var(--ddd-spacing-5);
+        padding-right: var(--ddd-spacing-4);
       }
       .card-text h3 {
-        color: #001E44;
-        margin: 0px;
-        font-size: 22px;
-        font-weight: 700;
-        line-height: 120%;
-        letter-spacing: normal;
+        color: var( --ddd-theme-default-nittanyNavy );
+        margin: var(--ddd-spacing-0);
+        font-size: var(--ddd-font-size-xs);
+        font-weight: var(--ddd-font-weight-bold);
+        line-height: var(--ddd-lh-120);
       }
       .card-text p {
-        font-size: 18px;
-        line-height: normal;
+        font-size: var(--ddd-font-size-3xs);
         white-space: pre-line;
-        font-weight: 400;
-        line-height: 150%;
-        letter-spacing: normal;
-        color: #262626;
-        margin-bottom: 0rem;
-        margin-top: 12px;
-        margin-bottom: 8px;
-        white-space: pre-line;
-      }
-      #btn-icon {
-        color: rgb(255, 255, 255);
-        display: block;
-        height: 12px;
-        width: 12px;
+        font-weight: var(--ddd-font-weight-regular);
+        line-height: var(--ddd-lh-150);
+        color: var(--ddd-theme-default-coalyGray);
+        margin-bottom: var(--ddd-spacing-0);
+        margin-top: var(--ddd-spacing-3);
+        margin-bottom: var(--ddd-spacing-2);
       }
       .card button {
-        height: 100%;
         transition: all .2s ease-out;
-        font-family:Roboto, Arial, Tahoma, sans-serif;
+        font-family: var(--ddd-font-primary);
         align-items: center;
         justify-content: center;
-        margin-top: auto;
-        padding: 12px 24px 12px 16px;
+        padding-bottom: var(--ddd-spacing-3);
+        padding-top: var(--ddd-spacing-3); 
+        padding-left: var(--ddd-spacing-3);
+        padding-right: var(--ddd-spacing-4);
         height: fit-content;
         width: 100%;
-        font-weight: 500;
-        font-size: 16px;
-        border-radius: 4px;
-        color: white;
-        background-color: rgb(0, 95, 169);
-        border: 2px solid rgb(0, 95, 169);
+        font-weight: var(--ddd-font-weight-medium);
+        font-size: var(--ddd-font-size-4xs);
+        border-radius: var(--ddd-radius-xs);
+        color: var(--ddd-theme-default-white);
+        background-color: var(--ddd-theme-default-link);
+        border: var(--ddd-border-size-sm);
       }
       .card button:hover {
         background-color: var(--ddd-theme-primary);

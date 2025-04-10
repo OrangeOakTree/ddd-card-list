@@ -42,34 +42,31 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
     css`
     :host {
       display: flex;
-      background-color: none;
-      border: none;
-      color: none;
     }
-    slot {
+    .wrapper slot {
       display: grid;
       grid-template-columns: repeat(1,1fr);
-      gap: 16px;
+      gap: var(--ddd-spacing-4);
     }
     .wrapper {
         display: flex;
         background-color: var(--ddd-theme-accent);
-        padding-left: 26px;
-        padding-right: 26px;
-        padding-top: 60px;
-        padding-bottom: 60px;
+        padding-left: var(--ddd-spacing-7);
+        padding-right: var(--ddd-spacing-7);
+        padding-top: var(--ddd-spacing-15);
+        padding-bottom: var(--ddd-spacing-15);
       }
 
     @media screen and (min-width: 768px) {
       .wrapper slot {
         grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
+        gap: var(--ddd-spacing-2);
       }
     }
     @media screen and (min-width: 1080px) {
       .wrapper slot {
         grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
+        gap: var(--ddd-spacing-7);
       }
     }
     `];
