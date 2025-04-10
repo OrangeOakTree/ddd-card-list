@@ -151,7 +151,9 @@ export class DddCard extends DDD {
           <h3>${this.title}</h3>
           <p> ${this.descript}</p>
         </div>
-        <button src=${this.src}> Explore ></button>
+        <a href=${this.src}>
+        <button> Explore ></button>
+        </a>
       </div>
     </div>`;
   }
